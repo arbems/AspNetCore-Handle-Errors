@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HandleErrorsAspNetCore.Controllers
@@ -6,16 +7,32 @@ namespace HandleErrorsAspNetCore.Controllers
     [Route("[controller]")]
     public class ApiController : ControllerBase
     {
-        // /api/divide/1/2
-        [HttpGet("divide/{Numerator}/{Denominator}")]
-        public IActionResult Divide(double Numerator, double Denominator)
+        [HttpGet("Throw")]
+        public IActionResult Throw() =>
+            throw new Exception("Sample exception.");
+
+        // Exception handler
+        [Route("/error-development")]
+        public IActionResult HandleErrorDevelopment(
+            [FromServices] IHostEnvironment hostEnvironment)
         {
-            if (Denominator == 0)
+            if (!hostEnvironment.IsDevelopment())
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            return Ok(Numerator / Denominator);
+            // Access the exception
+            var exceptionHandlerFeature =
+                HttpContext.Features.Get<IExceptionHandlerFeature>()!;
+
+            return Problem(
+                detail: exceptionHandlerFeature.Error.StackTrace,
+                title: exceptionHandlerFeature.Error.Message);
         }
+
+        // Exception handler        
+        [Route("/error")]
+        public IActionResult HandleError() =>
+            Problem(); // HandleError action sends an RFC 7807-compliant payload to the client
     }
 }

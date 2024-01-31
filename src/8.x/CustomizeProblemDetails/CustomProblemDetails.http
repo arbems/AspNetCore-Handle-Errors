@@ -8,14 +8,14 @@ Accept: application/json
 GET {{HandleErrorsAspNetCore_HostAddress}}/api/divide/1/0
 Accept: application/json
 
-### An unhandled exception occurs
+### Error
 
-GET {{HandleErrorsAspNetCore_HostAddress}}/api/divide/1/a
+GET {{HandleErrorsAspNetCore_HostAddress}}/api/squareroot/4
 Accept: application/json
 
-### An invalid input is supplied
+### Success
 
-GET {{HandleErrorsAspNetCore_HostAddress}}/asdasdasa
+GET {{HandleErrorsAspNetCore_HostAddress}}/api/squareroot/-1
 Accept: application/json
 
-### The URI has no matching endpoint
+### Error

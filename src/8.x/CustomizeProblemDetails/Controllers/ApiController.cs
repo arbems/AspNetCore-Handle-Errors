@@ -7,7 +7,6 @@ namespace HandleErrorsAspNetCore.Controllers
     [Route("[controller]")]
     public class ApiController : ControllerBase
     {
-        // /api/divide/1/2
         [HttpGet("divide/{Numerator}/{Denominator}")]
         public IActionResult Divide(double Numerator, double Denominator)
         {
@@ -24,7 +23,6 @@ namespace HandleErrorsAspNetCore.Controllers
             return Ok(Numerator / Denominator);
         }
 
-        // /api/squareroot/4
         [HttpGet("squareroot/{radicand}")]
         public IActionResult Squareroot(double radicand)
         {
