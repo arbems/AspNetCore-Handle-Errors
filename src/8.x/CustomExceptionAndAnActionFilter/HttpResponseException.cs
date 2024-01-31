@@ -1,4 +1,4 @@
-﻿namespace CustomException.Errors;
+﻿namespace CustomExceptionAndAnActionFilter;
 
 public class HttpResponseException : Exception
 {

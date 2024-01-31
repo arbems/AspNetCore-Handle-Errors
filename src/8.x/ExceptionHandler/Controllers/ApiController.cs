@@ -5,13 +5,11 @@ namespace HandleErrorsAspNetCore.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class MyController : ControllerBase
+    public class ApiController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Get(string valor)
-        {
+        [HttpGet("Throw")]
+        public IActionResult Throw() =>
             throw new Exception("Sample exception.");
-        }
 
         // Exception handler
         [Route("/error-development")]
@@ -32,10 +30,9 @@ namespace HandleErrorsAspNetCore.Controllers
                 title: exceptionHandlerFeature.Error.Message);
         }
 
-        // Exception handler
-        // HandleError action sends an RFC 7807-compliant payload to the client
+        // Exception handler        
         [Route("/error")]
         public IActionResult HandleError() =>
-            Problem();
+            Problem(); // HandleError action sends an RFC 7807-compliant payload to the client
     }
 }

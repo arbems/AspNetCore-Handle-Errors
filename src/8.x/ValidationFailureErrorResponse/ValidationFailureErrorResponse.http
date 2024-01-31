@@ -1,6 +1,11 @@
 @HandleErrorsAspNetCore_HostAddress = http://localhost:5264
 
-GET {{HandleErrorsAspNetCore_HostAddress}}/weatherforecast/
+GET {{HandleErrorsAspNetCore_HostAddress}}/Api/Throw
 Accept: application/json
+
+###
+
+GET {{HandleErrorsAspNetCore_HostAddress}}/Api/Throw
+Accept: application/xml
 
 ###

@@ -2,6 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+// adds services related to the ProblemDetails feature
 builder.Services.AddProblemDetails();
 
 var app = builder.Build();
