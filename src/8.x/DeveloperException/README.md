@@ -1,0 +1,1 @@
+﻿dotnet run --launch-profile Production --project src/8.x/DeveloperExceptionPage
